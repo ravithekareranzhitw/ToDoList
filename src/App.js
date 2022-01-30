@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React , { useState } from "react";
+const App = () => {
+ const [inputlist, setinputlist] =  useState("buy apple");
+ const [items , setitems] = useState([]);
+ const listOfItems =()=>{
+  setitems((oldItems)=>{
+    return[...oldItems,inputlist];
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  });
+
+ };
+ const itemEvent =(event)=>{
+  setinputlist(event.target.value);
+
+
+ };
+    return (
+    <>
+    <div className="main-div">
+      <div className="center_div">
+        <br></br>
+        <h1>to do list</h1>
+        <hr/>
+        <br/>
+        <input type="text" placeholder="add the list" onChange={itemEvent}/>
+        <button onClick={listOfItems}>+</button>
+       <ol>
+         {/* <li>{inputlist}</li> */}
+       {  items.map((itemval) => {
+           return <li>{itemval}</li>
+          })}
+       </ol>
+      </div>
+      
     </div>
-  );
-}
+    
+    
+ </>   
+    );
+
+
+
+};
+
 
 export default App;
